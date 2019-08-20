@@ -1,0 +1,6 @@
+Menu principal (header)
+  - visit
+  - login / logout / register / manage profile
+  - new event
+  - search events by date / by guest / by meal
+  - manage guests
