@@ -4,3 +4,18 @@ Menu principal (header)
   - new event
   - search events by date / by guest / by meal
   - manage guests
+
+Modules & components : 
+- header
+- visitor module
+    - welcome page
+    - login
+    - register
+    - visit
+- events module
+    - Edit event (mode update / create)
+    - Search event
+    - Event list
+    - Event detail
+    - tbc... 
+
