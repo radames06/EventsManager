@@ -1,1 +1,27 @@
-<p>header works!</p>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [ngbCollapse]="!isCollapsed">
+        <a class="navbar-brand" routerLink="/welcome" (click)="isCollapsed = false">Events Manager</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/events" (click)="isCollapsed = false">List of events</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/register" (click)="isCollapsed = false">Register</a>
+            </li>
+            <li class="nav-item" ngbDropdown>
+                <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown1" role="button">
+                    <fa-icon [icon]="faUser"></fa-icon>
+                </a>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item"  routerLink="/login" (click)="isCollapsed = false">Login</a>
+                    <a class="dropdown-item disabled" href="#" (click)="$event.preventDefault()">Settings</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

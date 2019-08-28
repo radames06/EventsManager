@@ -13,9 +13,36 @@ Modules & components :
     - register
     - visit
 - events module
-    - Edit event (mode update / create)
-    - Search event
-    - Event list
-    - Event detail
+    - events
+        - events-list
+            - event-card
+        - event-detail
     - tbc... 
+
+Explore: 
+- ng-bootstrap
+- virtual scrolling with angular material
+- Angular i18n
+- Upload a picture for events
+
+Uses : 
+- Multi-module with routing
+- NgBootstrap 4 with responsive Navbar
+- FontAwesome icons for Angular
+
+Time : 
+- Initialization of the project, creation of modules and basic routing : 3h
+- Création of basic navbar template : 1h
+- Composant simple de SignUp avec Firebase : 1h + 30min pour mettre en forme la gestion des erreurs simple
+- Composant simple de Login avec Firebase : 1h + 30min pour mettre en forme la gestion des erreurs simple
+- Intégration du module FontAwesome pour Angular : 30min
+
+- Initialisation des classes modèles et du service basique d'accès aux données (sans connexion avec bdd): 30 minutes
+- Initialisation du module events-list avec eventCard et eventDetail : 3h pour la mise en place du routing et du template de base (sans design)
+    + 2h pour la mise en forme avec un pipe custom
+    + 4h pour la mécanique de mise à jour avec DatePicker Ng-bootstrap
+    + 1h pour ajouter les 3 champs "addGuest", "addDish" et "addDrink" et leur mécanique
+
+
+
 

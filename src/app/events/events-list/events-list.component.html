@@ -1,1 +1,6 @@
-<p>events-list works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <app-event-card *ngFor="let guestEvent of eventsList; let i=index" [guestEvent]="guestEvent" [index]="i">
+        </app-event-card>
+    </div>
+</div>

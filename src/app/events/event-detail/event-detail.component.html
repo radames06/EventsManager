@@ -1,0 +1,142 @@
+<form #eventForm="ngForm" (ngSubmit)="onSubmit(eventForm)">
+    <div class="card">
+        <div class="card-header">
+            <div class="float-left">
+                <h4 *ngIf="!editMode">{{ editEvent.date | date:format }}</h4>
+                <div class="form-group" *ngIf="editMode">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="eventDate" name="eventDate"
+                            [(placeholder)]="eventDate" ngbDatepicker #d="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary btn-sm calendar" (click)="d.toggle()"
+                                type="button">
+                                <fa-icon [icon]="faCalendarAlt" size="sm"></fa-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <small class="form-text text-muted">
+                        Date of the event (*)
+                    </small>
+                </div>
+            </div>
+            <div class="float-right">
+                <small *ngIf="!editMode">{{ editEvent.event }}</small>
+                <div class="form-group" *ngIf="editMode">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="editEvent.event"
+                            name="eventName">
+                    </div>
+                    <small class="form-text text-muted">
+                        Name of the event (*)
+                    </small>
+                </div>
+                <br>
+                <a (click)="onEdit()" *ngIf="!editMode" style="cursor: pointer;">
+                    <fa-icon class="float-right" [icon]="faEdit"></fa-icon>
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Guests :</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item p-0 d-flex justify-content-between" *ngIf="editMode">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" [(ngModel)]="addGuest"
+                                        name="addGuest">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-success btn-sm" type="button"
+                                            (click)="onAddGuest()">+</button>
+                                        <button class="btn btn-outline-warning btn-sm" type="button"
+                                            (click)="eventForm.controls['addGuest'].reset()">X</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item p-0 d-flex justify-content-between"
+                            *ngFor="let attendee of editEvent.attendees; let i=index">
+                            {{ attendee.name }}
+                            <a (click)="onDeleteAttendee(i)" style="cursor: pointer;" *ngIf="editMode">
+                                <fa-icon style="color: tomato" [icon]="faTrash"></fa-icon>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Food :</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item p-0 d-flex justify-content-between" *ngIf="editMode">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" [(ngModel)]="addDish"
+                                        name="addDish">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-success btn-sm" type="button"
+                                            (click)="onAddDish()">+</button>
+                                        <button class="btn btn-outline-warning btn-sm" type="button"
+                                            (click)="eventForm.controls['addDish'].reset()">X</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item py-0 d-flex justify-content-between"
+                            *ngFor="let dish of editEvent.dishes; let i=index">
+                            {{ dish.name }}
+                            <a (click)="onDeleteDish(i)" style="cursor: pointer;" *ngIf="editMode">
+                                <fa-icon style="color: tomato" [icon]="faTrash"></fa-icon>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Drinks :</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item p-0 d-flex justify-content-between" *ngIf="editMode">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" [(ngModel)]="addDrink"
+                                        name="addDrink">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-success btn-sm" type="button"
+                                            (click)="onAddDrink()">+</button>
+                                        <button class="btn btn-outline-warning btn-sm" type="button"
+                                            (click)="eventForm.controls['addDrink'].reset()">X</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item py-0 d-flex justify-content-between"
+                            *ngFor="let drink of editEvent.drinks; let i=index">
+                            {{ drink.name }}
+                            <a (click)="onDeleteDrink(i)" style="cursor: pointer;" *ngIf="editMode">
+                                <fa-icon style="color: tomato" [icon]="faTrash"></fa-icon>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-3" *ngIf="editEvent.feedback != null || editMode">
+                <div class="col-md-12">
+                    <div>
+                        <h5>Feedback :</h5>
+                        <p *ngIf="!editMode">{{ editEvent.feedback }}</p>
+                    </div>
+                    <div class="form-group" *ngIf="editMode">
+                        <div class="input-group">
+                            <textarea class="form-control form-control-sm" [(ngModel)]="editEvent.feedback"
+                                name="eventFeedback"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex bd-highlight mb-3" *ngIf="editMode">
+                <button type="button" class="btn btn-outline-danger mr-auto p-2 bd-highlight"
+                    (click)="onDelete()">Delete Event</button>
+                <button type="submit" class="btn btn-outline-primary mr-1 p-2 bd-highlight">Save</button>
+                <button type="button" class="btn btn-outline-primary p-2 bd-highlight" (click)="onCancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>
