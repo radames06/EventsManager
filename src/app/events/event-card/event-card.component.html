@@ -5,7 +5,7 @@
     <h5 class="list-group-item-heading">{{ guestEvent.date | date:format }}</h5>
     <small>{{ guestEvent.event }}</small>
   </div>
-    <p class="my-0"><small>Guests : {{ guestEvent.attendeesNames | concatArray }}</small></p>
-    <p class="my-0"><small>Food : {{ guestEvent.dishesNames | concatArray }}</small></p>
-    <p class="my-0"><small>Drinks : {{ guestEvent.drinksNames | concatArray }}</small></p>
+    <p class="my-0"><small>Guests : {{ guestEvent.attendees | concatArray }}</small></p>
+    <p class="my-0"><small>Food : {{ guestEvent.dishes | concatArray }}</small></p>
+    <p class="my-0"><small>Drinks : {{ guestEvent.drinks | concatArray }}</small></p>
 </a>

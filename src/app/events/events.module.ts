@@ -10,6 +10,7 @@ import { EventsComponent } from './events/events.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { EventStartComponent } from './event-start/event-start.component';
 import { SharedModule } from '../shared.module';
+import { ConcatArrayPipe } from '../services/concat-array.pipe';
 @NgModule({
     declarations: [
         EventsListComponent,
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared.module';
         EventCardComponent,
         EventsComponent,
         EventDetailComponent,
-        EventStartComponent   
+        EventStartComponent,
+        ConcatArrayPipe   
     ],
     imports: [
         RouterModule,

@@ -10,7 +10,7 @@ export class EventCardComponent implements OnInit {
 
   @Input() guestEvent: GuestEvent;
   @Input() index: number; 
-  
+
   constructor() { }
 
   ngOnInit() {

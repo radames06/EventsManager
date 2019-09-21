@@ -13,6 +13,7 @@ import { EventsModule } from './events/events.module';
 import { PasswordsIdenticalValidatorDirective } from './services/passwordsIdentical.directive';
 import { EventService } from './services/event.service';
 import { SharedModule } from './shared.module';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SharedModule } from './shared.module';
     SharedModule
   ],
   providers: [
+    AuthService,
     EventService
   ],
   exports: [],

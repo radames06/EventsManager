@@ -19,7 +19,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
     this.subscription = this.eventService.eventsChanged.subscribe((guestEvents: GuestEvent[]) => {
       this.eventsList = guestEvents;
     })
-    this.eventsList = this.eventService.getEvents();
+    //this.eventsList = this.eventService.getEvents();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

@@ -1,36 +1,28 @@
-import { Attendee } from './attendee.model';
-import { Dish } from './dish.model';
-import { Drink } from './drink.model';
-
 export class GuestEvent {
 
     constructor (
+        public firebaseId: String,
+        public name: String,
         public date: Date,
-        public attendees: Attendee[],
+        public attendees: String[],
         public event: String, // lunch, dinner, birthday...
-        public dishes?: Dish[],
-        public drinks?: Drink[],
-        public feedback?: String
+        public userMail: String,
+        public dishes?: String[],
+        public drinks?: String[],
+        public feedback?: String,
     ) {}
 
-    cloneEvent() {
+    public cloneEvent() : GuestEvent {
         return new GuestEvent(
+            this.firebaseId,
+            this.name,
             this.date,
             this.attendees.slice(),
             this.event,
+            this.userMail,
             this.dishes.slice(),
             this.drinks.slice(),
             this.feedback
         )
-    }
-
-    get attendeesNames() {
-        return this.attendees.map(value => value.name); 
-    }
-    get dishesNames() {
-        return this.dishes.map(value => value.name);
-    }
-    get drinksNames() {
-        return this.drinks.map(value => value.name);
     }
 }

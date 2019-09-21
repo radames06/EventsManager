@@ -1,23 +1,10 @@
-Menu principal (header)
-  - visit
-  - login / logout / register / manage profile
-  - new event
-  - search events by date / by guest / by meal
-  - manage guests
-
-Modules & components : 
-- header
-- visitor module
-    - welcome page
-    - login
-    - register
-    - visit
-- events module
-    - events
-        - events-list
-            - event-card
-        - event-detail
-    - tbc... 
+Todo : 
+- Gérer la touche Entrée sur le formulaire (actuellement ça valide le formulaire alors qu'il faudrait que ça ajoute un invité)
+- Encore de petits bugs sur le canDeactivate guard
+- Activer la sécurité sur les pages (authentification en place mais pas contrôlée au niveau de chaque page)
+- Ajouter le user en propriété de chaque event (pour sauvegarde et multi-user)
+- Page Welcome avec explications
+- Déploiement
 
 Explore: 
 - ng-bootstrap
@@ -27,8 +14,11 @@ Explore:
 
 Uses : 
 - Multi-module with routing
-- NgBootstrap 4 with responsive Navbar
+- NgBootstrap 4 with responsive Navbar, DatePicker, ...
 - FontAwesome icons for Angular
+- Authentication with Firebase
+- Custom directive (to test if 2 passwords are identical when signup)
+- Custom pipe (to display the first n elements of an array, separated by ",")
 
 Time : 
 - Initialization of the project, creation of modules and basic routing : 3h
@@ -42,6 +32,8 @@ Time :
     + 2h pour la mise en forme avec un pipe custom
     + 4h pour la mécanique de mise à jour avec DatePicker Ng-bootstrap
     + 1h pour ajouter les 3 champs "addGuest", "addDish" et "addDrink" et leur mécanique
+    + 1h pour le canDeactivate Guard
+    + 2h pour fonctions create / delete
 
 
 

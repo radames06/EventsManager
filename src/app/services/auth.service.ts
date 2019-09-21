@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from "rxjs/operators";
 import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
+import { EventService } from './event.service';
 
 export interface AuthResponseData {
     kind: string;
@@ -17,9 +18,10 @@ export interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     user = new BehaviorSubject<User>(null);
+    userMail = new String();
     // private tokenExpirationTimer: any;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private eventService: EventService) { }
 
     signUp(email: string, password: string) {
         return this.http.post<AuthResponseData>(
@@ -81,8 +83,8 @@ export class AuthService {
     ) {
         const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
         const user = new User(email, userId, token, expirationDate);
+        this.userMail = new String(email);
+        this.eventService.initEvents(this.userMail);
         this.user.next(user);
-        // this.autoLogout(expiresIn * 1000);
-        // localStorage.setItem('userData', JSON.stringify(user));
     }
 }

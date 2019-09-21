@@ -57,7 +57,7 @@
                         </li>
                         <li class="list-group-item p-0 d-flex justify-content-between"
                             *ngFor="let attendee of editEvent.attendees; let i=index">
-                            {{ attendee.name }}
+                            {{ attendee }}
                             <a (click)="onDeleteAttendee(i)" style="cursor: pointer;" *ngIf="editMode">
                                 <fa-icon style="color: tomato" [icon]="faTrash"></fa-icon>
                             </a>
@@ -83,7 +83,7 @@
                         </li>
                         <li class="list-group-item py-0 d-flex justify-content-between"
                             *ngFor="let dish of editEvent.dishes; let i=index">
-                            {{ dish.name }}
+                            {{ dish }}
                             <a (click)="onDeleteDish(i)" style="cursor: pointer;" *ngIf="editMode">
                                 <fa-icon style="color: tomato" [icon]="faTrash"></fa-icon>
                             </a>
@@ -109,7 +109,7 @@
                         </li>
                         <li class="list-group-item py-0 d-flex justify-content-between"
                             *ngFor="let drink of editEvent.drinks; let i=index">
-                            {{ drink.name }}
+                            {{ drink }}
                             <a (click)="onDeleteDrink(i)" style="cursor: pointer;" *ngIf="editMode">
                                 <fa-icon style="color: tomato" [icon]="faTrash"></fa-icon>
                             </a>

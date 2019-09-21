@@ -7,9 +7,7 @@ import { NgForm } from '@angular/forms';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService } from 'src/app/services/dialog.service';
 import { Observable } from 'rxjs';
-import { Attendee } from 'src/app/services/attendee.model';
-import { Dish } from 'src/app/services/dish.model';
-import { Drink } from 'src/app/services/drink.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -37,7 +35,8 @@ export class EventDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private eventService: EventService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
@@ -47,23 +46,24 @@ export class EventDetailComponent implements OnInit {
           this.id = +params['id'];
           this.addMode = (this.route.pathFromRoot[2].snapshot.url[0].path ==  "new");
           if (!this.addMode) {
-            this.guestEvent = this.eventService.getEvent(this.id);
             this.editMode = false;
             this.formUntouched = true;
+            this.guestEvent = this.eventService.getEvent(this.id);
           } else {
             this.guestEvent = new GuestEvent(
-              new Date(),
-              new Array<Attendee>(),
               null,
-              new Array<Dish>(),
-              new Array<Drink>()
+              new String(),
+              new Date(),
+              new Array<String>(),
+              null,
+              new String(this.auth.userMail),
+              new Array<String>(),
+              new Array<String>()
             );
             this.editMode = true;
             this.formUntouched = true;
-          }
-          console.log(this.guestEvent);
+          };
           this.editEvent = this.guestEvent.cloneEvent();
-
         }
       );
   }
@@ -71,6 +71,8 @@ export class EventDetailComponent implements OnInit {
   onEdit() {
     this.editMode = true;
     this.formUntouched = true;
+    console.log(this.guestEvent.date);
+    console.log(this.guestEvent.date.constructor.name);
     this.eventDate = new NgbDate(
       this.guestEvent.date.getFullYear(),
       this.guestEvent.date.getMonth() + 1,
@@ -118,19 +120,19 @@ export class EventDetailComponent implements OnInit {
     }
   }
   onAddGuest() {
-    this.editEvent.attendees.push(new Attendee(this.addGuest));
+    this.editEvent.attendees.push(this.addGuest);
     // this.eventForm.controls['addGuest'].reset();
     this.addGuest = null;
     this.formUntouched = false;
   }
   onAddDish() {
-    this.editEvent.dishes.push(new Dish(this.addDish));
+    this.editEvent.dishes.push(this.addDish);
     // this.eventForm.controls['addDish'].reset();
     this.addDish = null;
     this.formUntouched = false;
   }
   onAddDrink() {
-    this.editEvent.drinks.push(new Drink(this.addDrink, null, null));
+    this.editEvent.drinks.push(this.addDrink);
     // this.eventForm.controls['addDrink'].reset();
     this.addDrink = null;
     this.formUntouched = false;
